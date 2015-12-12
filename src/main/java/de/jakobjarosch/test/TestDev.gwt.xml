@@ -1,0 +1,4 @@
+<module rename-to="gwt_test">
+    <inherits name="de.jakobjarosch.test.Test"/>
+    <add-linker name="xsiframe"/>
+</module>

@@ -1,0 +1,50 @@
+apply plugin: 'java'
+apply plugin: 'gwt'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/google-snapshots'
+    }
+}
+
+dependencies {
+    providedCompile 'com.google.gwt:gwt-user:2.8.0-SNAPSHOT'
+}
+
+gwt {
+    gwtVersion = '2.8.0-SNAPSHOT'
+
+    modules 'de.jakobjarosch.test.Test'
+    devModules 'de.jakobjarosch.test.TestDev'
+
+    superDev {
+        noPrecompile = true
+    }
+
+    compiler {
+        strict = true
+        enableClosureCompiler = true
+        disableClassMetadata = true
+        disableCastChecking = true
+    }
+}
+
+tasks.withType(de.richsource.gradle.plugins.gwt.AbstractGwtActionTask) {
+    args '-generateJsInteropExports'
+}
+

@@ -1,0 +1,6 @@
+<module rename-to="gwt_test">
+    <inherits name="com.google.gwt.core.Core"/>
+    <add-linker name="sso"/>
+    <source path="client"/>
+    <entry-point class="de.jakobjarosch.test.client.EntryPoint"/>
+</module>
